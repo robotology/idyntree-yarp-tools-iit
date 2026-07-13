@@ -195,201 +195,201 @@ namespace dev {
     }
 
     /* IEncoder */
-    bool ReadOnlyRemoteControlBoard::getAxes(int *ax)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getAxes(int *ax)
     {
-        if (!ax) return false;
+        if (!ax) return ReturnValue_error_method_failed;
         m_extendedPortMutex.wait();
         bool ret = m_extendedIntputStatePort.getJointPositionSize(*ax); //It is possible that the joint size provided in the configuration do not match what it is read from stateExt
         m_extendedPortMutex.post();
-        return ret;
+        return ret ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getEncoder(int j, double *v)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncoder(int j, double *v)
     {
-        if (j < 0 || j >= m_numberOfJoints || !v) return false;
+        if (j < 0 || j >= m_numberOfJoints || !v) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_ENCODER, j, v);
+        return getSingleData(VOCAB_ENCODER, j, v) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getEncoderTimed(int j, double *v, double *t)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncoderTimed(int j, double *v, double *t)
     {
-        if (j < 0 || j >= m_numberOfJoints || !v || !t) return false;
+        if (j < 0 || j >= m_numberOfJoints || !v || !t) return ReturnValue_error_method_failed;
 
-        return getTimedSingleData(VOCAB_ENCODER, j, v, t);
+        return getTimedSingleData(VOCAB_ENCODER, j, v, t) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 
-    bool ReadOnlyRemoteControlBoard::getEncoders(double *encs) {
-        if (!encs) return false;
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncoders(double *encs) {
+        if (!encs) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_ENCODERS, encs);
+        return getVectorData(VOCAB_ENCODERS, encs) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getEncodersTimed(double *encs, double *ts) {
-        if (!encs || !ts) return false;
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncodersTimed(double *encs, double *ts) {
+        if (!encs || !ts) return ReturnValue_error_method_failed;
 
-        return getTimedVectorData(VOCAB_ENCODERS, encs, ts);
+        return getTimedVectorData(VOCAB_ENCODERS, encs, ts) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getEncoderSpeed(int j, double *sp)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncoderSpeed(int j, double *sp)
     {
-        if (j < 0 || j >= m_numberOfJoints || !sp) return false;
+        if (j < 0 || j >= m_numberOfJoints || !sp) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_ENCODER_SPEED, j, sp);
+        return getSingleData(VOCAB_ENCODER_SPEED, j, sp) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 
-    bool ReadOnlyRemoteControlBoard::getEncoderSpeeds(double *spds)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncoderSpeeds(double *spds)
     {
-        if (!spds) return false;
+        if (!spds) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_ENCODER_SPEEDS, spds);
+        return getVectorData(VOCAB_ENCODER_SPEEDS, spds) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getEncoderAcceleration(int j, double *acc)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncoderAcceleration(int j, double *acc)
     {
-        if (j < 0 || j >= m_numberOfJoints || !acc) return false;
+        if (j < 0 || j >= m_numberOfJoints || !acc) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_ENCODER_ACCELERATION, j, acc);
+        return getSingleData(VOCAB_ENCODER_ACCELERATION, j, acc) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 
-    bool ReadOnlyRemoteControlBoard::getEncoderAccelerations(double *accs)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getEncoderAccelerations(double *accs)
     {
-        if (!accs) return false;
+        if (!accs) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_ENCODER_ACCELERATIONS, accs);
+        return getVectorData(VOCAB_ENCODER_ACCELERATIONS, accs) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
     /* IAxisInfo */
-    bool ReadOnlyRemoteControlBoard::getAxisName(int j, std::string& name) {
-        if (j < 0 || j >= m_numberOfJoints) return false;
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getAxisName(int j, std::string& name) {
+        if (j < 0 || j >= m_numberOfJoints) return ReturnValue_error_method_failed;
         name = m_axes[j].first;
-        return true;
+        return ReturnValue_ok;
     }
 
-    bool ReadOnlyRemoteControlBoard::getJointType(int j, yarp::dev::JointTypeEnum& type) {
-        if (j < 0 || j >= m_numberOfJoints) return false;
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getJointType(int j, yarp::dev::JointTypeEnum& type) {
+        if (j < 0 || j >= m_numberOfJoints) return ReturnValue_error_method_failed;
         type = m_axes[j].second;
-        return true;
+        return ReturnValue_ok;
     }
 
     /* IMotorEncoders */
-    bool ReadOnlyRemoteControlBoard::getNumberOfMotorEncoders(int *num)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getNumberOfMotorEncoders(int *num)
     {
-        if (!num) return false;
+        if (!num) return ReturnValue_error_method_failed;
         *num = m_numberOfJoints;
-        return true;
+        return ReturnValue_ok;
     }
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncoder(int m, double *v)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncoder(int m, double *v)
     {
-        if (m < 0 || m >= m_numberOfJoints || !v) return false;
+        if (m < 0 || m >= m_numberOfJoints || !v) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_MOTOR_ENCODER, m, v);
+        return getSingleData(VOCAB_MOTOR_ENCODER, m, v) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncoderTimed(int m, double *encs, double *time)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncoderTimed(int m, double *encs, double *time)
     {
-        if (m < 0 || m >= m_numberOfJoints || !encs || !time) return false;
+        if (m < 0 || m >= m_numberOfJoints || !encs || !time) return ReturnValue_error_method_failed;
 
-        return getTimedSingleData(VOCAB_MOTOR_ENCODER, m, encs, time);
+        return getTimedSingleData(VOCAB_MOTOR_ENCODER, m, encs, time) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncoders(double *encs) {
-        if (!encs) return false;
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncoders(double *encs) {
+        if (!encs) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_MOTOR_ENCODERS, encs);
+        return getVectorData(VOCAB_MOTOR_ENCODERS, encs) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncodersTimed(double *encs, double *time) {
-        if (!encs || !time) return false;
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncodersTimed(double *encs, double *time) {
+        if (!encs || !time) return ReturnValue_error_method_failed;
 
-        return getTimedVectorData(VOCAB_MOTOR_ENCODERS, encs, time);
+        return getTimedVectorData(VOCAB_MOTOR_ENCODERS, encs, time) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncoderSpeed(int m, double *sp)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncoderSpeed(int m, double *sp)
     {
-        if (m < 0 || m >= m_numberOfJoints || !sp) return false;
+        if (m < 0 || m >= m_numberOfJoints || !sp) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_MOTOR_ENCODER_SPEED, m, sp);
+        return getSingleData(VOCAB_MOTOR_ENCODER_SPEED, m, sp) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncoderSpeeds(double *spds)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncoderSpeeds(double *spds)
     {
-        if (!spds) return false;
+        if (!spds) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_MOTOR_ENCODER_SPEEDS, spds);
+        return getVectorData(VOCAB_MOTOR_ENCODER_SPEEDS, spds) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncoderAcceleration(int m, double *acc)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncoderAcceleration(int m, double *acc)
     {
-        if (m < 0 || m >= m_numberOfJoints || !acc) return false;
+        if (m < 0 || m >= m_numberOfJoints || !acc) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_MOTOR_ENCODER_ACCELERATION, m, acc);
+        return getSingleData(VOCAB_MOTOR_ENCODER_ACCELERATION, m, acc) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 
-    bool ReadOnlyRemoteControlBoard::getMotorEncoderAccelerations(double *accs)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getMotorEncoderAccelerations(double *accs)
     {
-        if (!accs) return false;
+        if (!accs) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_MOTOR_ENCODER_ACCELERATIONS, accs);
+        return getVectorData(VOCAB_MOTOR_ENCODER_ACCELERATIONS, accs) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 
     /* ITorqueControl */
-    bool ReadOnlyRemoteControlBoard::getTorque(int j, double *t)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getTorque(int j, double *t)
     {
-        if (j < 0 || j >= m_numberOfJoints || !t) return false;
+        if (j < 0 || j >= m_numberOfJoints || !t) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_TRQ, j, t);
+        return getSingleData(VOCAB_TRQ, j, t) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getTorques(double *t)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getTorques(double *t)
     {
-        if (!t) return false;
+        if (!t) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_TRQS, t);
+        return getVectorData(VOCAB_TRQS, t) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
     /* IPWMControl */
-    bool ReadOnlyRemoteControlBoard::getNumberOfMotors(int *number)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getNumberOfMotors(int *number)
     {
-        if (!number) return false;
+        if (!number) return ReturnValue_error_method_failed;
         *number = m_numberOfJoints;
-        return true;
+        return ReturnValue_ok;
     }
 
-    bool ReadOnlyRemoteControlBoard::getDutyCycle(int m, double *val)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getDutyCycle(int m, double *val)
     {
-        if (m < 0 || m >= m_numberOfJoints || !val) return false;
+        if (m < 0 || m >= m_numberOfJoints || !val) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_PWMCONTROL_PWM_OUTPUT, m, val);
+        return getSingleData(VOCAB_PWMCONTROL_PWM_OUTPUT, m, val) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getDutyCycles(double *vals)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getDutyCycles(double *vals)
     {
-        if (!vals) return false;
+        if (!vals) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_PWMCONTROL_PWM_OUTPUTS, vals);
+        return getVectorData(VOCAB_PWMCONTROL_PWM_OUTPUTS, vals) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
     /* IAmplifierControl */
-    bool ReadOnlyRemoteControlBoard::getCurrent(int j, double* val)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getCurrent(int j, double* val)
     {
-        if (j < 0 || j >= m_numberOfJoints || !val) return false;
+        if (j < 0 || j >= m_numberOfJoints || !val) return ReturnValue_error_method_failed;
 
-        return getSingleData(VOCAB_AMP_CURRENT, j, val);
+        return getSingleData(VOCAB_AMP_CURRENT, j, val) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
-    bool ReadOnlyRemoteControlBoard::getCurrents(double *vals)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getCurrents(double *vals)
     {
-        if (!vals) return false;
+        if (!vals) return ReturnValue_error_method_failed;
 
-        return getVectorData(VOCAB_AMP_CURRENTS, vals);
+        return getVectorData(VOCAB_AMP_CURRENTS, vals) ? ReturnValue_ok : ReturnValue_error_method_failed;
     }
 
 }

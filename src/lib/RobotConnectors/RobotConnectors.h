@@ -10,8 +10,8 @@
 
 #include <yarp/dev/PolyDriver.h>
 #include <yarp/dev/IEncodersTimed.h>
-#include <yarp/os/Node.h>
-#include <yarp/os/Subscriber.h>
+//#include <yarp/os/Node.h>
+//#include <yarp/os/Subscriber.h>
 #include <iDynTree/Core/VectorDynSize.h>
 #include <iDynTree/Model/Model.h>
 #include <mutex>
