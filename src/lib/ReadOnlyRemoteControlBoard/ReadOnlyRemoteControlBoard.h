@@ -96,126 +96,127 @@ public:
     bool getTimedVectorData(int field, double* val, double* time);
 
     /* IEncodersTimed */
-    virtual bool getAxes(int *ax);
-    virtual bool resetEncoder(int j) {return false;}
-    virtual bool resetEncoders() {return false;}
-    virtual bool setEncoder(int j, double val) {return false;}
-    virtual bool setEncoders(const double *vals) {return false;}
-    virtual bool getEncoder(int j, double *v);
-    virtual bool getEncoderTimed(int j, double *v, double *t);
-    virtual bool getEncoders(double *encs);
-    virtual bool getEncodersTimed(double *encs, double *ts);
-    virtual bool getEncoderSpeed(int j, double *sp);
-    virtual bool getEncoderSpeeds(double *spds);
-    virtual bool getEncoderAcceleration(int j, double *acc);
-    virtual bool getEncoderAccelerations(double *accs);
+    virtual yarp::dev::ReturnValue getAxes(int *ax);
+    virtual yarp::dev::ReturnValue resetEncoder(int j) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue resetEncoders() {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setEncoder(int j, double val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setEncoders(const double *vals) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getEncoder(int j, double *v);
+    virtual yarp::dev::ReturnValue getEncoderTimed(int j, double *v, double *t);
+    virtual yarp::dev::ReturnValue getEncoders(double *encs);
+    virtual yarp::dev::ReturnValue getEncodersTimed(double *encs, double *ts);
+    virtual yarp::dev::ReturnValue getEncoderSpeed(int j, double *sp);
+    virtual yarp::dev::ReturnValue getEncoderSpeeds(double *spds);
+    virtual yarp::dev::ReturnValue getEncoderAcceleration(int j, double *acc);
+    virtual yarp::dev::ReturnValue getEncoderAccelerations(double *accs);
 
     /* IAxisInfo */
-    virtual bool getAxisName(int j, std::string &name);
-    virtual bool getJointType(int j, yarp::dev::JointTypeEnum &type);
+    virtual yarp::dev::ReturnValue getAxisName(int j, std::string &name);
+    virtual yarp::dev::ReturnValue getJointType(int j, yarp::dev::JointTypeEnum &type);
 
     /* IMotorEncoders */
-    virtual bool getNumberOfMotorEncoders(int *num);
-    virtual bool resetMotorEncoder(int m) {return false;}
-    virtual bool resetMotorEncoders() {return false;}
-    virtual bool setMotorEncoderCountsPerRevolution(int m, const double cpr) {return false;}
-    virtual bool getMotorEncoderCountsPerRevolution(int m, double *cpr) {return false;}
-    virtual bool setMotorEncoder(int m, const double val) {return false;}
-    virtual bool setMotorEncoders(const double *vals) {return false;}
-    virtual bool getMotorEncoder(int m, double *v);
-    virtual bool getMotorEncoders(double *encs);
-    virtual bool getMotorEncodersTimed(double *encs, double *time);
-    virtual bool getMotorEncoderTimed(int m, double *encs, double *time);
-    virtual bool getMotorEncoderSpeed(int m, double *sp);
-    virtual bool getMotorEncoderSpeeds(double *spds);
-    virtual bool getMotorEncoderAcceleration(int m, double *acc);
-    virtual bool getMotorEncoderAccelerations(double *accs);
+    virtual yarp::dev::ReturnValue getNumberOfMotorEncoders(int *num);
+    virtual yarp::dev::ReturnValue resetMotorEncoder(int m) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue resetMotorEncoders() {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setMotorEncoderCountsPerRevolution(int m, const double cpr) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getMotorEncoderCountsPerRevolution(int m, double *cpr) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setMotorEncoder(int m, const double val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setMotorEncoders(const double *vals) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getMotorEncoder(int m, double *v);
+    virtual yarp::dev::ReturnValue getMotorEncoders(double *encs);
+    virtual yarp::dev::ReturnValue getMotorEncodersTimed(double *encs, double *time);
+    virtual yarp::dev::ReturnValue getMotorEncoderTimed(int m, double *encs, double *time);
+    virtual yarp::dev::ReturnValue getMotorEncoderSpeed(int m, double *sp);
+    virtual yarp::dev::ReturnValue getMotorEncoderSpeeds(double *spds);
+    virtual yarp::dev::ReturnValue getMotorEncoderAcceleration(int m, double *acc);
+    virtual yarp::dev::ReturnValue getMotorEncoderAccelerations(double *accs);
 
     /* ITorqueControl */
-    virtual bool getRefTorques(double *t) {return false;}
-    virtual bool getRefTorque(int j, double *t) {return false;}
-    virtual bool setRefTorques(const double *t) {return false;}
-    virtual bool setRefTorque(int j, double t) {return false;}
-    virtual bool setRefTorques(const int n_joint, const int *joints, const double *t) {return false;}
-    virtual bool getMotorTorqueParams(int j,  yarp::dev::MotorTorqueParameters *params) {return false;}
-    virtual bool setMotorTorqueParams(int j,  const yarp::dev::MotorTorqueParameters params) {return false;}
-    virtual bool getTorque(int j, double *t);
-    virtual bool getTorques(double *t);
-    virtual bool getTorqueRange(int j, double *min, double *max) {return false;}
-    virtual bool getTorqueRanges(double *min, double *max) {return false;}
+    virtual yarp::dev::ReturnValue getRefTorques(double *t) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getRefTorque(int j, double *t) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setRefTorques(const double *t) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setRefTorque(int j, double t) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setRefTorques(const int n_joint, const int *joints, const double *t) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getMotorTorqueParams(int j,  yarp::dev::MotorTorqueParameters *params) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setMotorTorqueParams(int j,  const yarp::dev::MotorTorqueParameters params) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getTorque(int j, double *t);
+    virtual yarp::dev::ReturnValue getTorques(double *t);
+    virtual yarp::dev::ReturnValue getTorqueRange(int j, double *min, double *max) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getTorqueRanges(double *min, double *max) {return ReturnValue_error_not_implemented_by_device;}
 
 
     /* IPWMControl */
-    virtual bool getNumberOfMotors(int *number);
-    virtual bool setRefDutyCycle(int m, double ref) {return false;}
-    virtual bool setRefDutyCycles(const double *refs) {return false;}
-    virtual bool getRefDutyCycle(int m, double *ref) {return false;}
-    virtual bool getRefDutyCycles(double *refs) {return false;}
-    virtual bool getDutyCycle(int m, double *val);
-    virtual bool getDutyCycles(double *vals);
+    virtual yarp::dev::ReturnValue getNumberOfMotors(int *number);
+    virtual yarp::dev::ReturnValue setRefDutyCycle(int m, double ref) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setRefDutyCycles(const double *refs) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getRefDutyCycle(int m, double *ref) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getRefDutyCycles(double *refs) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getDutyCycle(int m, double *val);
+    virtual yarp::dev::ReturnValue getDutyCycles(double *vals);
 
     /* IAmplifierControl */
-    virtual bool enableAmp(int j) {return false;}
-    virtual bool disableAmp(int j) {return false;}
-    virtual bool getAmpStatus(int *st) {return false;}
-    virtual bool getAmpStatus(int j, int *v) {return false;}
-    virtual bool getCurrents(double *vals);
-    virtual bool getCurrent(int j, double *val);
-    virtual bool getMaxCurrent(int j, double *v) {return false;}
-    virtual bool setMaxCurrent(int j, double v) {return false;}
-    virtual bool getNominalCurrent(int m, double *val) {return false;}
-    virtual bool setNominalCurrent(int m, const double val) { return false; }
-    virtual bool getPeakCurrent(int m, double *val) {return false;}
-    virtual bool setPeakCurrent(int m, const double val) {return false;}
-    virtual bool getPWM(int j, double* val) {return false;}
-    virtual bool getPWMLimit(int j, double* val) {return false;}
-    virtual bool setPWMLimit(int j, const double val) {return false;}
-    virtual bool getPowerSupplyVoltage(int j, double* val) {return false;}
+    virtual yarp::dev::ReturnValue enableAmp(int j) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue disableAmp(int j) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getAmpStatus(int *st) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getAmpStatus(int j, int *v) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getCurrents(double *vals);
+    virtual yarp::dev::ReturnValue getCurrent(int j, double *val);
+    virtual yarp::dev::ReturnValue getMaxCurrent(int j, double *v) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setMaxCurrent(int j, double v) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getNominalCurrent(int m, double *val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setNominalCurrent(int m, const double val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getPeakCurrent(int m, double *val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setPeakCurrent(int m, const double val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getPWM(int j, double* val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getPWMLimit(int j, double* val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue setPWMLimit(int j, const double val) {return ReturnValue_error_not_implemented_by_device;}
+    virtual yarp::dev::ReturnValue getPowerSupplyVoltage(int j, double* val) {return ReturnValue_error_not_implemented_by_device;}
 
     /* IPositionControl */
-    bool positionMove(int j, double ref) {return false;}
-    bool positionMove(const int n_joint, const int *joints, const double *refs) {return false;}
-    bool positionMove(const double *refs) {return false;}
-    bool getTargetPosition(const int joint, double *ref) {return false;}
-    bool getTargetPositions(double *refs) {return false;}
-    bool getTargetPositions(const int n_joint, const int *joints, double *refs) {return false;}
-    bool relativeMove(int j, double delta) {return false;}
-    bool relativeMove(const int n_joint, const int *joints, const double *refs) {return false;}
-    bool relativeMove(const double *deltas) {return false;}
-    bool checkMotionDone(int j, bool *flag) {return false;}
-    bool checkMotionDone(const int n_joint, const int *joints, bool *flag) {return false;}
-    bool checkMotionDone(bool *flag) {return false;}
-    bool setRefSpeed(int j, double sp) {return false;}
-    bool setRefSpeeds(const int n_joint, const int *joints, const double *spds) {return false;}
-    bool setRefSpeeds(const double *spds) {return false;}
-    bool setRefAcceleration(int j, double acc) {return false;}
-    bool setRefAccelerations(const int n_joint, const int *joints, const double *accs) {return false;}
-    bool setRefAccelerations(const double *accs) {return false;}
-    bool getRefSpeed(int j, double *ref) {return false;}
-    bool getRefSpeeds(const int n_joint, const int *joints, double *spds) {return false;}
-    bool getRefSpeeds(double *spds) {return false;}
-    bool getRefAcceleration(int j, double *acc) {return false;}
-    bool getRefAccelerations(const int n_joint, const int *joints, double *accs) {return false;}
-    bool getRefAccelerations(double *accs) {return false;}
-    bool stop(int j) {return false;};
-    bool stop(const int len, const int *val1) {return false;}
-    bool stop() {return false;}
+    yarp::dev::ReturnValue positionMove(int j, double ref) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue positionMove(const int n_joint, const int *joints, const double *refs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue positionMove(const double *refs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTargetPosition(const int joint, double *ref) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTargetPositions(double *refs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTargetPositions(const int n_joint, const int *joints, double *refs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue relativeMove(int j, double delta) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue relativeMove(const int n_joint, const int *joints, const double *refs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue relativeMove(const double *deltas) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue checkMotionDone(int j, bool& flag) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue checkMotionDone(const std::vector<int>& joints, bool& flag) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue checkMotionDone(bool& flag) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setTrajSpeed(int j, double sp) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setTrajSpeeds(const int n_joint, const int *joints, const double *spds) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setTrajSpeeds(const double *spds) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setTrajAcceleration(int j, double acc) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setTrajAccelerations(const int n_joint, const int *joints, const double *accs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setTrajAccelerations(const double *accs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTrajSpeed(int j, double *ref) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTrajSpeeds(const int n_joint, const int *joints, double *spds) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTrajSpeeds(double *spds) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTrajAcceleration(int j, double *acc) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTrajAccelerations(const int n_joint, const int *joints, double *accs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTrajAccelerations(double *accs) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue stop(int j) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue stop(const int n_joint, const int *joints) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue stop() {return ReturnValue_error_not_implemented_by_device;}
 
     /* IVelocityControl */
-    bool velocityMove(int j, double v) {return false;}
-    bool velocityMove(const double *v) {return false;}
-    bool velocityMove(const int n_joint, const int *joints, const double *spds) {return false;}
-    bool getRefVelocity(const int joint, double* vel) {return false;}
-    bool getRefVelocities(double* vels) {return false;}
-    bool getRefVelocities(const int n_joint, const int* joints, double* vels) {return false;}
+    yarp::dev::ReturnValue velocityMove(int j, double v) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue velocityMove(const double *v) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue velocityMove(const int n_joint, const int *joints, const double *spds) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTargetVelocity(const int joint, double* vel) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTargetVelocities(double* vels) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getTargetVelocities(const int n_joint, const int* joints, double* vels) {return ReturnValue_error_not_implemented_by_device;}
 
     /* IControlMode */
-    bool getControlMode(int j, int *mode) {return false;}
-    bool getControlModes(int *modes) {return false;}
-    bool getControlModes(const int n_joint, const int *joints, int *modes) {return false;}
-    bool setControlMode(const int j, const int mode) {return false;}
-    bool setControlModes(const int n_joint, const int *joints, int *modes) {return false;}
-    bool setControlModes(int *modes) {return false;}
+    yarp::dev::ReturnValue getAvailableControlModes(int j, std::vector<yarp::dev::SelectableControlModeEnum>& avail) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getControlMode(int j, yarp::dev::ControlModeEnum& mode) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getControlModes(std::vector<yarp::dev::ControlModeEnum>& mode) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue getControlModes(const std::vector<int>& joints, std::vector<yarp::dev::ControlModeEnum>& mode) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setControlMode(int j, yarp::dev::SelectableControlModeEnum mode) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setControlModes(const std::vector<int>& joints, const std::vector<yarp::dev::SelectableControlModeEnum>& mode) {return ReturnValue_error_not_implemented_by_device;}
+    yarp::dev::ReturnValue setControlModes(const std::vector<yarp::dev::SelectableControlModeEnum>& mode) {return ReturnValue_error_not_implemented_by_device;}
 
 
 };
