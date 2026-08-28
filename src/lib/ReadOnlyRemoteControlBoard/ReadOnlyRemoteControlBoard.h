@@ -96,7 +96,7 @@ public:
     bool getTimedVectorData(int field, double* val, double* time);
 
     /* IEncodersTimed */
-    virtual yarp::dev::ReturnValue getAxes(int *ax);
+    virtual yarp::dev::ReturnValue getAxes(size_t& ax);
     virtual yarp::dev::ReturnValue resetEncoder(int j) {return ReturnValue_error_not_implemented_by_device;}
     virtual yarp::dev::ReturnValue resetEncoders() {return ReturnValue_error_not_implemented_by_device;}
     virtual yarp::dev::ReturnValue setEncoder(int j, double val) {return ReturnValue_error_not_implemented_by_device;}
