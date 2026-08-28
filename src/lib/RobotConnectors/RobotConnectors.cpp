@@ -168,9 +168,9 @@ bool RemapperConnector::addJointsFromBoard(const std::string &name,
         return false;
     }
 
-    int nAxes = 0;
+    size_t nAxes = 0;
 
-    if (!pos->getAxes(&nAxes))
+    if (!pos->getAxes(nAxes))
     {
         return false;
     }
@@ -710,11 +710,11 @@ bool StateExtConnector::getJointValues(iDynTree::VectorDynSize &jointValuesInRad
 
         for (size_t cb = 0; cb < m_encodersInterfaces.size(); ++cb)
         {
-            int numberOfJoints = 0;
+            size_t numberOfJoints = 0;
 
-            if (m_encodersInterfaces[cb].encoders->getAxes(&numberOfJoints))
+            if (m_encodersInterfaces[cb].encoders->getAxes(numberOfJoints))
             {
-                if (numberOfJoints != static_cast<int>(m_encodersInterfaces[cb].jointsBuffer.size()))
+                if (numberOfJoints != m_encodersInterfaces[cb].jointsBuffer.size())
                 {
                     yError() << "The number of joints for the control board" << m_cb_jointsMap[cb].name
                              << "appears to be" << numberOfJoints << "while it has been configured with"

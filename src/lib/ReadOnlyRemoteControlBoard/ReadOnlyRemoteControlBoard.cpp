@@ -195,11 +195,10 @@ namespace dev {
     }
 
     /* IEncoder */
-    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getAxes(int *ax)
+    yarp::dev::ReturnValue ReadOnlyRemoteControlBoard::getAxes(size_t& ax)
     {
-        if (!ax) return ReturnValue_error_method_failed;
         m_extendedPortMutex.wait();
-        bool ret = m_extendedIntputStatePort.getJointPositionSize(*ax); //It is possible that the joint size provided in the configuration do not match what it is read from stateExt
+        bool ret = m_extendedIntputStatePort.getJointPositionSize(ax); //It is possible that the joint size provided in the configuration do not match what it is read from stateExt
         m_extendedPortMutex.post();
         return ret ? ReturnValue_ok : ReturnValue_error_method_failed;
     }

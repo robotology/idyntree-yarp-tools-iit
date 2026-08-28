@@ -9,7 +9,6 @@
 #include "stateExtendedReader.h"
 #include <cstring>
 
-#include <yarp/os/PortablePair.h>
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Network.h>
@@ -69,7 +68,7 @@ void StateExtendedInputPort::init(int numberOfJoints)
     last.interactionMode.resize(numberOfJoints);
 }
 
-void StateExtendedInputPort::onRead(yarp::dev::impl::jointData &v)
+void StateExtendedInputPort::onRead(yarp::dev::JointStateData &v)
 {
     now=Time::now();
     mutex.lock();
@@ -326,7 +325,7 @@ void StateExtendedInputPort::getEstFrequency(int &ite, double &av, double &min, 
     mutex.unlock();
 }
 
-bool StateExtendedInputPort::getJointPositionSize(int &size)
+bool StateExtendedInputPort::getJointPositionSize(size_t& size)
 {
     mutex.lock();
     size = last.jointPosition.size();
