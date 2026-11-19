@@ -13,7 +13,6 @@
 #include <cstring>
 #include <mutex>
 
-#include <yarp/os/PortablePair.h>
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Network.h>
@@ -29,7 +28,7 @@
 #include <yarp/dev/ControlBoardInterfacesImpl.h>
 #include <yarp/dev/ControlBoardHelpers.h>
 
-#include <yarp/dev/impl/jointData.h>
+#include <yarp/dev/JointStateData.h>
 
 
 // encoders should arrive at least every 0.5s to be considered valide
@@ -39,9 +38,9 @@ using namespace yarp::os;
 using namespace yarp::dev;
 using namespace yarp::sig;
 
-class StateExtendedInputPort:public yarp::os::BufferedPort<yarp::dev::impl::jointData>
+class StateExtendedInputPort:public yarp::os::BufferedPort<yarp::dev::JointStateData>
 {
-    yarp::dev::impl::jointData last;
+    yarp::dev::JointStateData last;
     std::mutex mutex;
     Stamp lastStamp;
     double deltaT;
@@ -60,8 +59,8 @@ public:
     void resetStat();
     void init(int numberOfJoints);
 
-    using yarp::os::BufferedPort<yarp::dev::impl::jointData>::onRead;
-    void onRead(yarp::dev::impl::jointData &v) override;
+    using yarp::os::BufferedPort<yarp::dev::JointStateData>::onRead;
+    void onRead(yarp::dev::JointStateData &v) override;
 
     /**
      * @brief setTimeout, set the timeout for retrieving data
@@ -82,7 +81,7 @@ public:
     // time is in ms
     void getEstFrequency(int &ite, double &av, double &min, double &max);
 
-    bool getJointPositionSize(int& size);
+    bool getJointPositionSize(size_t& size);
 };
 
 #endif // YARP_DEV_REMOTECONTROLBOARD_STATEEXTENDEDREADER_H
